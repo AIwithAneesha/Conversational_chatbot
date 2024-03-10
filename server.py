@@ -136,22 +136,6 @@ def question_to_a_therapist_multiple_chat(text,mood): #not done-store in vector 
 
     return messages
 
-def question_to_a_doctor_only_once(text,mood):
-    llm = HuggingFaceHub(repo_id='tiiuae/falcon-7b-instruct', huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN)
-    question ="As a Doctor respond with medical therapies and home remedies to this statment: "+text+"I am right now feeling "+mood+'Please dont give explanation of the output you give'
-    template = """Question: {question}
-    Answer: Let's go through this togethere."""
-
-    prompt = PromptTemplate(template=template, input_variables=["question"])    
-    llm_chain = LLMChain(prompt=prompt, llm=llm)
-    
-    result=llm_chain.invoke(question)
-    print(result)
-    output=result['text']
-    return output
-
-
-
 
 def generalknowledge_only_once(text,mood):
     llm = HuggingFaceHub(repo_id='tiiuae/falcon-7b-instruct', huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN)
@@ -189,7 +173,7 @@ def classify_using_lanchain(input):
         },
         "Task": {
             "type": "string",
-            "enum": [ "doctor","mental","therapy" ,"anxious","depressed","hurt","stress",'addiction', "weather related","Remainder","Play a video","Play a game","Play a music","Tell a joke", "general knowledge question"],
+            "enum": [ "mental","therapy" ,"anxious","depressed","hurt","stress",'addiction', "weather related","Remainder","Play a video","Play a game","Play a music","Tell a joke", "general knowledge question"],
             "description": "describes what is the task asked to do in the text",
         },
 
@@ -212,11 +196,7 @@ def send_to_respective_API(text,category,mood):
             return 'Success'
         else:
             return None
-        
-    
-    elif category=='question to a doctor':
-        print("category",category)
-        output=question_to_a_doctor_only_once(text,mood)
+
 
 
     elif category in ['therapist', 'depressed', 'hurt', 'stress', 'addiction', 'anxious','therapy','mental']:
