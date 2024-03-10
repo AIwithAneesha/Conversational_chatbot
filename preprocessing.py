@@ -103,12 +103,8 @@ class FinalOutput:   #to customize each of the output as per the input
             output =text
             print(text)
             return output
-        
-        elif category in ('doctor'):
-            print(text)
-            output =text
-            return output
-        
+
+    
         elif category in ('weather'):
             print(text)
             output =text
