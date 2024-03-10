@@ -253,6 +253,7 @@ def send_to_respective_API(text,category,mood):
 if 'result_of_task' not in  st.session_state:
         st.session_state.result_of_task=''
 
+st.write("Secret Key", st.secrets["openai_secret_key"])
 
 def main():
     st.title("Aneesha's Chatbot App")
