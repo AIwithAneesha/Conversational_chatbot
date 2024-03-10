@@ -10,3 +10,8 @@ Methods used
 
 4. If remainder, the date is segmented into start and end datetime then added to Google Calender
 
+
+How to use it?
+Step 1: Setup the env file with the required keys
+Step 2: Create and environment and install the requirements.txt packages
+Step 3: Run the streamlit using: streamlit run server.py
